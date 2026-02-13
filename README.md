@@ -1,11 +1,15 @@
-# Windows Executable Header Notes
+# O que significa `MZ\x90`?
 
-The seemingly cryptic byte sequence `MZ` (often followed by a handful of
-non-printable characters such as `0x90`) is a signature that identifies a file
-as a DOS MZ executable, which also serves as the prefix for modern Portable
-Executable (PE) binaries used on Windows. The initials refer to Mark Zbikowski,
-one of the original architects of MS-DOS. When you encounter a binary that
-starts with `4D 5A` (the hexadecimal values for `M` and `Z`), you can be
-confident that it is intended to be executed by the Windows loader.
+`MZ` são os dois primeiros bytes (`4D 5A`) de muitos executáveis do Windows.
+Esse par é a assinatura do formato **DOS MZ**, que também aparece no início de
+arquivos **PE** (`.exe`, `.dll`) modernos.
 
-This repository collects small notes and experiments around binary formats.
+O `\x90` que pode aparecer em seguida é o byte hexadecimal `90`, que em x86
+representa a instrução **NOP** (*no operation*). Ver `MZ\x90` em bytes iniciais
+normalmente só indica que você está olhando o começo de um executável.
+
+## Em resumo
+
+- `MZ` => assinatura de executável DOS/Windows.
+- `\x90` => byte comum em código x86 (NOP).
+- `MZ\x90` => início típico de um binário executável no ecossistema Windows.
